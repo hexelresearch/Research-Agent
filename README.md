@@ -1,3 +1,3 @@
 # Research-Agent
 
-A sophisticated research assistant for Arificial Intelligence workload
+A sophisticated research assistant
