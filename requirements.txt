@@ -3,4 +3,3 @@ torchvision
 opencv-python
 pdf2image
 transformers
-
