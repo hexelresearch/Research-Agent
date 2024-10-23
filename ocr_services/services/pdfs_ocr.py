@@ -5,7 +5,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from io import BytesIO
 from typing import List
-from ..model.florence import get_florence, device_dtype
+from model.florence import get_florence, device_dtype
 from PIL import Image
 import numpy as np
 from pdf2image import convert_from_bytes

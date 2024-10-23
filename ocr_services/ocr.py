@@ -1,17 +1,17 @@
-from fastapi import APIRouter, UploadFile, File, HTTPException
-from .services.images_ocr import ocr_images
-from .services.pdfs_ocr import ocr_pdf
+from fastapi import FastAPI, UploadFile, File, HTTPException
+from services.images_ocr import ocr_images
+from services.pdfs_ocr import ocr_pdf
 from typing import List
 import logging
 
 # Define the API router
-router = APIRouter()
+app = FastAPI()
 
 # Configure logger
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
-@router.post("/ocr_images")
+@app.post("/ocr_images")
 async def ocr_images_endpoint(files: List[UploadFile] = File(...)):
     logger.info("Received request to perform OCR on images.")
     try:
@@ -22,7 +22,7 @@ async def ocr_images_endpoint(files: List[UploadFile] = File(...)):
         logger.error("Error extracting data from images: %s", str(e))
         raise HTTPException(status_code=500, detail="Error extracting data from images.")
 
-@router.post("/ocr_pdfs")
+@app.post("/ocr_pdfs")
 async def ocr_pdfs_endpoint(files: List[UploadFile] = File(...)):
     logger.info("Received request to perform OCR on PDFs.")
     try:
