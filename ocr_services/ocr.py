@@ -11,6 +11,10 @@ app = FastAPI()
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
+@app.get("/")
+def index():
+    return {"message": "Welcome to Hexel Research (OCR SERVICES)"}
+
 @app.post("/ocr_images")
 async def ocr_images_endpoint(files: List[UploadFile] = File(...)):
     logger.info("Received request to perform OCR on images.")
