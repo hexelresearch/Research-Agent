@@ -19,7 +19,7 @@ def messages(prompt):
         ]
     return messages
 
-meta_llama_3b = model_setup("meta-llama/Llama-3.2-3B-Instruct", torch.bfloat16, "cuda")
+meta_llama_3b_instruct = model_setup("meta-llama/Llama-3.2-3B-Instruct", torch.bfloat16, "cuda")
 meta_llama_1b = model_setup("meta-llama/Llama-3.2-1B-Instruct", torch.bfloat16, "cuda")
 
 app = FastAPI()
@@ -31,7 +31,7 @@ def index():
 @app.get("/search1b")
 def infrence(prompt: str):
     try:
-        outputs = meta_llama_3b(
+        outputs = meta_llama_3b_instruct(
         messages(prompt),
         max_new_tokens=1024,
         )
@@ -42,7 +42,7 @@ def infrence(prompt: str):
 @app.get("/search3b")
 def infrence(prompt: str):
     try:
-        outputs = meta_llama_3b(
+        outputs = meta_llama_1b(
         messages(prompt),
         max_new_tokens=1024,
         )
